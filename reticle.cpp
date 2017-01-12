@@ -2,6 +2,7 @@
 #include "definitions.h"
 using namespace std;
 #include <random>
+
 extern std::default_random_engine generator;
 std::bernoulli_distribution bd(0.5);
 std::normal_distribution<double> gauss(JM,JS);

@@ -8,3 +8,6 @@
 //mean_value
 #define JM 0
 
+//temperature
+#define T 1
+#define DEBUG 1
