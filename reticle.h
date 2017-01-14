@@ -1,11 +1,6 @@
 #ifndef RETICLE_INCLUDED
 #define RETICLE_INCLUDED
-
-#include <algorithm>
-#include <array>
-#include <cstdlib>
-#include <random>
-#include<iostream>
+#include "main.h"
 namespace grid
 {
 void seedGenerator();

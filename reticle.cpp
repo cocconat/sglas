@@ -1,32 +1,45 @@
-#include "reticle.h"
-#include "definitions.h"
-using namespace std;
+#include <array>
+#include <cstdlib>
 #include <random>
+#include <algorithm>
+#include <iostream>
+#include <boost/random/normal_distribution.hpp>
+#include <boost/random/bernoulli_distribution.hpp>
+#include <boost/random/mersenne_twister.hpp>
 
-extern std::default_random_engine generator;
-std::bernoulli_distribution bd(0.5);
-std::normal_distribution<double> gauss(JM,JS);
+#include "reticle.h"
+
+extern boost::random::mt19937 gen;
+//insert bernoulli e gauss!!
+boost::random::bernoulli_distribution<int> bd(0.5);
+boost::random::normal_distribution<double> gauss(JM,JS);
 
 int grid::bernoulli(void){
-    if (bd(generator)) {return 1;}
+    if (bd(gen)) {return 1;}
     else {return -1;};
 }
 double grid::normal(void){
-    return gauss(generator);
+    return gauss(gen);
 }
 
 //initialize the container by the mode up, down or random
 template <typename It>
 void grid::reticleInit(It Begin, It End, char mode){
     if (mode=='u') {
+#if DEBUG
     std::cout << "initialize all up"<<std::endl;
+#endif
     std::fill(Begin, End,1);
     }
     if (mode=='d') {
+#if DEBUG
     std::cout << "initialize all down"<<std::endl;
+#endif
     std::fill(Begin, End,0);}
     if (mode='r'){
+#if DEBUG
     std::cout << "initialize all random"<<std::endl;
+#endif
     std::generate(Begin, End,grid::bernoulli);}
 }
 
